@@ -1,8 +1,7 @@
-import { Test, TestingModule } from '@nestjs/testing';
+import { Test } from '@nestjs/testing';
 import { AuthService } from './auth.service';
 import { UsersService } from './users.service';
 import { User } from './user.entity';
-import { find } from 'rxjs/operators';
 
 let fakeUserService: Partial<UsersService>;
 
@@ -26,13 +25,13 @@ describe('AuthService', () => {
         }
     
         const module = await Test.createTestingModule({
-           providers: [
-               AuthService,
-               {
-                   provide: UsersService,
-                   useValue: fakeUserService,
-               }
-           ],
+            providers: [
+                AuthService,
+                {
+                    provide: UsersService,
+                    useValue: fakeUserService,
+                }
+            ],
         }).compile();
         service = module.get(AuthService);
     })
