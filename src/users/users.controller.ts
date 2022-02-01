@@ -20,6 +20,9 @@ import { AuthService } from './auth.service';
 import { CurrentUser } from './decorators/current-user.decorator';
 import { User } from './user.entity';
 import { AuthGuard } from '../guard/auth.guard';
+import { config } from 'dotenv';
+
+config();
 
 @Controller('auth')
 @Serialize(UserDto)
@@ -40,7 +43,7 @@ export class UsersController {
 
 
   @Post('/signup')
-  async createUser(@Body() body: CreateUserDto, @Session() session?: any) { 
+  async createUser(@Body() body: CreateUserDto, @Session() session: any) { 
     const { email, password } = body;
     const user = await this.authService.signup(email, password);
     session.userId = user.id;

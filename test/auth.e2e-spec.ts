@@ -17,8 +17,8 @@ describe('Authentication System)', () => {
     await app.init();
   });
 
-  it('should handles a signup request', () => {
-    const [email, password] = [ 'test01@test.com', 'right password' ];
+  it('should handles a signup request', async () => {
+    const [email, password] = [ 'test02@test.com', 'right password' ];
     return request(app.getHttpServer())
       .post('/auth/signup')
       .send({ email, password })
